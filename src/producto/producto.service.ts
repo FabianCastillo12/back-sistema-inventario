@@ -17,7 +17,7 @@ export class ProductoService {
       throw new BadRequestException("categoria equivocada")
     }
    
-    const producto= await this.productoRepository.create({nombre:createProductoDto.nombre,precio:createProductoDto.precio,estado:createProductoDto.estado,catidadStock:createProductoDto.cantidadStock,unidad_medida:createProductoDto.unidad_medida,categoria})
+    const producto= await this.productoRepository.create({nombre:createProductoDto.nombre,precio:createProductoDto.precio,estado:createProductoDto.estado,cantidadStock:createProductoDto.cantidadStock,unidad_medida:createProductoDto.unidad_medida,categoria})
      return await this.productoRepository.save(producto)
   }
 
@@ -38,7 +38,7 @@ export class ProductoService {
     if(!categoria ){
       throw new NotFoundException("la categoria no existe");
     }
-     await this.productoRepository.update(id,{nombre:updateProductoDto.nombre,precio:updateProductoDto.precio ,categoria});
+     await this.productoRepository.update(id,{nombre:updateProductoDto.nombre,precio:updateProductoDto.precio ,categoria,cantidadStock:updateProductoDto.cantidadStock});
   return {
     msg:"producto actualizado"
   }

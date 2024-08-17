@@ -11,7 +11,7 @@ nombre:string
 @Column({type:"decimal"})
 precio:number
 @Column()
-catidadStock:number
+cantidadStock:number
 @Column()
 unidad_medida:string
 @Column()
