@@ -18,7 +18,7 @@ export class ClientesService {
     return this.clienteRespository.find();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} cliente`;
   }
 
@@ -30,7 +30,8 @@ export class ClientesService {
     return  await this.clienteRespository.update(id,updateClienteDto)
    }
 
-  remove(id: number) {
-    return `This action removes a #${id} cliente`;
+  remove(id: string) {
+console.log(id)
+    return this.clienteRespository.delete(id);
   }
 }
