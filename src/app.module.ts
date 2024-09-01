@@ -7,6 +7,8 @@ import { ConfigModule } from '@nestjs/config';
 import { ProductoModule } from './producto/producto.module';
 import { CategoriaModule } from './categoria/categoria.module';
 import { ClientesModule } from './clientes/clientes.module';
+import { PedidosModule } from './pedidos/pedidos.module';
+import { DetallePedidosModule } from './detalle-pedidos/detalle-pedidos.module';
 @Module({
   imports: [
     AuthModule,ConfigModule.forRoot({
@@ -35,6 +37,10 @@ import { ClientesModule } from './clientes/clientes.module';
     CategoriaModule,
     
     ClientesModule,
+    
+    PedidosModule,
+    
+    DetallePedidosModule,
     
     
   ],

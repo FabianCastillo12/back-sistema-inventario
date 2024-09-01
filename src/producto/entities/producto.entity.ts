@@ -1,5 +1,6 @@
 import { Categoria } from "src/categoria/entities/categoria.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, UpdateDateColumn } from "typeorm";
+import { DetallePedido } from "src/detalle-pedidos/entities/detalle-pedido.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Producto {
@@ -23,4 +24,7 @@ estado:string
   fechaActualizacion: Date;
 @ManyToOne(()=>Categoria,(categoria)=>categoria.productos,{eager:true})
 categoria:Categoria
+@OneToMany(()=> DetallePedido,(detalle)=>detalle.id)
+detallePedidos:DetallePedido[]
+
 }
