@@ -7,10 +7,12 @@ import { Categoria } from 'src/categoria/entities/categoria.entity';
 import { CategoriaModule } from 'src/categoria/categoria.module';
 
 @Module({
+  imports: [
+    TypeOrmModule.forFeature([Producto, Categoria]),
+    CategoriaModule
+  ],
   controllers: [ProductoController],
   providers: [ProductoService],
-
-  imports:[TypeOrmModule.forFeature([Producto,Categoria]),CategoriaModule],
-  exports:[ProductoModule]
+  exports: [ProductoService],
 })
 export class ProductoModule {}

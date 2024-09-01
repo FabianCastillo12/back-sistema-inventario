@@ -12,6 +12,7 @@ import { Cliente } from 'src/clientes/entities/cliente.entity';
 
 @Module({
   imports:[TypeOrmModule.forFeature([Pedido,DetallePedido,Producto,Cliente]),ProductoModule,DetallePedidosModule,ClientesModule],
+  exports:[PedidosModule],
   controllers: [PedidosController],
   providers: [PedidosService],
 })

@@ -1,22 +1,25 @@
 import { Pedido } from "src/pedidos/entities/pedido.entity";
 import { Producto } from "src/producto/entities/producto.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 
 @Entity()
 export class DetallePedido {
+  @PrimaryGeneratedColumn()
+  id: number;
 
- @PrimaryColumn()
- id:number;
- @Column()
- cantidad:number;
- @Column({type:"float"})
- precio_unitario:number;
- @Column({type:"float"})
- subTotal:number
- @ManyToOne(() => Pedido , (pedido) =>pedido.DetallePedidos)
- pedido:Pedido;
-@ManyToOne(()=>Producto,(producto)=>producto.detallePedidos)
- producto:Producto;
+  @Column()
+  cantidad: number;
 
+  @Column({ type: "float" })
+  precio_unitario: number;
+
+  @Column({ type: "float" })
+  subTotal: number;
+
+  @ManyToOne(() => Pedido, (pedido) => pedido.detallePedidos)
+  @JoinColumn({ name: 'pedido_id' })
+  pedido: Pedido;
+
+  @ManyToOne(() => Producto, (producto) => producto.detallePedidos)
+  producto: Producto;
 }
-
