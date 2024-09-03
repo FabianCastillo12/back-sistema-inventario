@@ -14,10 +14,19 @@ export class UpdateProductoDto extends PartialType(CreateProductoDto) {
     @IsOptional()
     @IsString()
     categoria?: string;
+
     @Min(1)
     @IsOptional()
     @IsNumber()
     cantidadStock?: number;
+    
+    @IsOptional()
+    @IsString()
+    estado?: string;
+
+    @IsOptional()
+    @IsString()
+    unidad_medida?: string;
 
 }
 

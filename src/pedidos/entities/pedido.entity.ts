@@ -16,7 +16,7 @@ export class Pedido {
     @Column({ type: 'varchar' }) 
     estado: string;
 
-    @Column()
+    @Column({ type: "float" })
     total: number;
 
     @OneToMany(() => DetallePedido, (detalle) => detalle.pedido)

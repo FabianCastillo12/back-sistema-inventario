@@ -2,10 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { ProductoService } from './producto.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
-import { Roles } from 'src/auth/common/decoradores/roles.decorator';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { RolesGuard } from 'src/auth/guard/roles/roles.guard';
-import { ROLES } from 'src/auth/enum/role.auth';
 
 @Controller('producto')
 export class ProductoController {
