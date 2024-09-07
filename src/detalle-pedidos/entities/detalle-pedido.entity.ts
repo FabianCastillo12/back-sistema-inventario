@@ -16,8 +16,7 @@ export class DetallePedido {
   @Column({ type: "float" })
   subTotal: number;
 
-  @ManyToOne(() => Pedido, (pedido) => pedido.detallePedidos)
-  @JoinColumn({ name: 'pedido_id' })
+  @ManyToOne(() => Pedido, (pedido) => pedido.detallePedidos, { onDelete: 'CASCADE' })
   pedido: Pedido;
 
   @ManyToOne(() => Producto, (producto) => producto.detallePedidos)
