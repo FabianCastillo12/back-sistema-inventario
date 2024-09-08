@@ -15,7 +15,7 @@ export class UpdateProductoDto extends PartialType(CreateProductoDto) {
     @IsString()
     categoria?: string;
 
-    @Min(1)
+    @Min(0)
     @IsOptional()
     @IsNumber()
     cantidadStock?: number;
