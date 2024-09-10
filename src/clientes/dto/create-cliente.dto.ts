@@ -1,4 +1,4 @@
-import { IsEmail, IsString } from "class-validator";
+import { IsEmail, IsString, IsOptional } from "class-validator";
 
 export class CreateClienteDto {
     @IsString()
@@ -9,5 +9,8 @@ export class CreateClienteDto {
     telefono:string;
     @IsString()
     direccion:string;
-
+    @IsString()
+    dni:string;
+    @IsString()
+    ruc:string;
 }
