@@ -9,4 +9,15 @@ export class ReportesController {
   async obtenerVentasDeHoy() {
     return this.reportesService.obtenerVentasDeHoy();
   }
+
+  @Get('ventas-2-years')
+  async obtenerVentas2años(){
+
+    return this.reportesService.obtenerVentas2años();
+  }
+
+  @Get('ventas-categoria-semanal')
+  async obtenerVentasGaseosasTipo7dias(){
+    return this.reportesService.obtenerVentasGaseosasTipo7dias();
+  }
 }
