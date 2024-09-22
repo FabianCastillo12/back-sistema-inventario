@@ -40,11 +40,7 @@ export class ProductoService {
     if(!producto){
       throw new NotFoundException(`Producto con ID ${id} no encontrado`);
     }
-    const categoria=await this.categoriaRepository.findOneBy({nombre:updateProductoDto.categoria})
-    if(!categoria ){
-      throw new NotFoundException("la categoria no existe");
-    }
-     await this.productoRepository.update(id,{nombre:updateProductoDto.nombre,precio:updateProductoDto.precio ,categoria,cantidadStock:updateProductoDto.cantidadStock});
+     await this.productoRepository.update(id,{nombre:updateProductoDto.nombre,precio:updateProductoDto.precio,cantidadStock:updateProductoDto.cantidadStock});
   return {
     msg:"producto actualizado"
   }
