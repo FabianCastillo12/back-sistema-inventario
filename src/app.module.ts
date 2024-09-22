@@ -20,7 +20,7 @@ import { ReportesModule } from './reportes/reportes.module'
       host: 'localhost',
       port: 5430,
       username: 'postgres',
-      password: 'ostgres',
+      password: 'postgres',
       database: 'sodaLimon',
       autoLoadEntities: true,
       synchronize: true,

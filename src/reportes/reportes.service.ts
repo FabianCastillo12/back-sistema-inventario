@@ -36,6 +36,30 @@ export class ReportesService {
     return ventasHoy;
   }
 
+  async obtenerVentasUltimos30Dias(): Promise<any> {
+    const hoy = new Date();
+    const hace30Dias = new Date(
+      hoy.getFullYear(),
+      hoy.getMonth(),
+      hoy.getDate() - 30
+    );
+
+    const inicioDelDia = new Date(
+      hoy.getFullYear(),
+      hoy.getMonth(),
+      hoy.getDate()
+    );
+
+    const ventasUltimos30Dias = await this.pedidoRepository
+      .createQueryBuilder("pedido")
+      .leftJoinAndSelect("pedido.detallePedidos", "detalle")
+      .where("pedido.fecha_pedido >= :hace30Dias", { hace30Dias })
+      .andWhere("pedido.fecha_pedido < :inicioDelDia", { inicioDelDia })
+      .getMany();
+
+    return ventasUltimos30Dias;
+  }
+
   async obtenerVentas2años(): Promise<any> {
     // Ejecutar la consulta SQL
     const resultados = await this.pedidoRepository.query(`
@@ -50,7 +74,6 @@ export class ReportesService {
       ORDER BY año, mes;
     `);
 
-    // Verificar los resultados
     console.log("Resultados de la consulta:", resultados);
 
     const añoActual = new Date().getFullYear();
@@ -109,12 +132,12 @@ export class ReportesService {
 
     const categoriasGaseosas = [
       "Soda Limon",
-      "Kola Tigrina oro",
-      "Kola Tigrina piña",
-      "Kola Tigrina roja",
-      "Kola Tigrina negra",
-      "Kola Tigrina guarana",
-      "Kola Tigrina naranja",
+      "Kola T. oro",
+      "Kola T. piña",
+      "Kola T. roja",
+      "Kola T. negra",
+      "Kola T. guarana",
+      "Kola T. naranja",
     ];
     const unidadesMedida = ["450ml", "2L", "1.1L", "3L"];
 
@@ -155,21 +178,21 @@ export class ReportesService {
         }
       });
     });
-    const chartdata = categoriasGaseosas.map(categoria => {
-      const dataCategoria = { "name": categoria, "Total":0 };
+    const chartdata = categoriasGaseosas.map((categoria) => {
+      const dataCategoria = { name: categoria, Total: 0 };
       let total = 0;
-  
+
       // Agregar cada unidad de medida como clave en el objeto
-      unidadesMedida.forEach(unidad => {
-          const cantidad = resultado[categoria][unidad] || 0;
-          dataCategoria[unidad] = cantidad;
-          total += cantidad;  // Sumar la cantidad al total
+      unidadesMedida.forEach((unidad) => {
+        const cantidad = resultado[categoria][unidad] || 0;
+        dataCategoria[unidad] = cantidad;
+        total += cantidad; // Sumar la cantidad al total
       });
-  
-      dataCategoria.Total = total;  // Agregar el total al objeto
-  
+
+      dataCategoria.Total = total; // Agregar el total al objeto
+
       return dataCategoria;
-  });
+    });
     console.log(chartdata);
     return chartdata;
   }
