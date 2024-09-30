@@ -9,6 +9,7 @@ import { CategoriaModule } from './categoria/categoria.module';
 import { ClientesModule } from './clientes/clientes.module';
 import { PedidosModule } from './pedidos/pedidos.module';
 import { ReportesModule } from './reportes/reportes.module'
+import { ReportesDocModule } from './reportes-docs/reportes-doc.module'
 
 @Module({
   imports: [
@@ -38,7 +39,8 @@ import { ReportesModule } from './reportes/reportes.module'
     CategoriaModule,
     ClientesModule,
     PedidosModule,
-    ReportesModule
+    ReportesModule,
+    ReportesDocModule
   ],
   controllers: [AppController],
   providers: [AppService],
