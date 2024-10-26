@@ -13,6 +13,7 @@ async function bootstrap() {
    app.enableCors({
     origin: '*' // Permite solicitudes desde cualquier origen
   });
-  await app.listen(3010);
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
 }
 bootstrap();

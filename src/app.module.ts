@@ -18,19 +18,19 @@ import { ReportesDocModule } from './reportes-docs/reportes-doc.module'
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5430,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'sodaLimon',
+      host: process.env.HOST,
+      port: 5432,
+      username: process.env.POSTGRES_USERNAME,
+      password:process.env.PASSWORD,
+      database: process.env.DATABASE, 
       autoLoadEntities: true,
       synchronize: true,
       ssl: process.env.POSTGRES_SSL === "true",
       extra: {
         ssl:
-          process.env.POSTGRES_SSL === "true"
+          process.env.POSTGRES_SSL === "true" 
             ? {
-                rejectUnauthorized: false,
+                rejectUnauthorized: false, 
               }
             : null,
       },
@@ -43,6 +43,8 @@ import { ReportesDocModule } from './reportes-docs/reportes-doc.module'
     ReportesDocModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService], 
 })
-export class AppModule {}
+export class AppModule {
+  
+}
